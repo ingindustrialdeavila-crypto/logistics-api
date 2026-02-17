@@ -94,11 +94,11 @@ body{
     background:#2563eb;
 }
 
-/* ===== SUBMENU CENTRADO ===== */
+/* ===== SUBMENU ===== */
 .submenu{
     background:white;
     display:flex;
-    justify-content:center;  /* 🔥 centrado */
+    justify-content:center;
     gap:50px;
     padding:25px 0;
     border-bottom:1px solid #e5e7eb;
@@ -182,7 +182,7 @@ footer{
 <div class="navbar">
     <div class="logo-text">MLOGIX</div>
     <div class="nav-links">
-        <a href="/">Dashboard</a>
+        <a href="/" class="active">Dashboard</a>
         <a href="/docs">API Docs</a>
         <a href="/integration">Integration</a>
         <a href="/logs">Logs</a>
@@ -201,6 +201,7 @@ footer{
     </div>
 
     <div class="logo-box">
+        <!-- IMPORTANTE: ruta correcta para FastAPI -->
         <img src="/static/img/Mlogix_logo.png" alt="Mlogix Logo">
     </div>
 </div>
@@ -245,7 +246,7 @@ footer{
 </div>
 
 <footer>
-© 2026 MLOGIX · Plataforma Empresarial de Logística desarrollada por el Grupo Empresarial Magnus Kamiuns GEMK
+©️ 2026 MLOGIX · Plataforma Empresarial de Logística desarrollada por el Grupo Empresarial Magnus Kamiuns GEMK
 </footer>
 
 </body>
