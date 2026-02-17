@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
@@ -25,10 +25,13 @@ app = FastAPI(
     title="MLOGIX API",
     version="1.0.0",
     description="API empresarial para logística y mensajería",
-    docs_url=None,          # Desactiva Swagger en raíz
+    docs_url=None,
     redoc_url=None
 )
 
+# =========================
+# CORS
+# =========================
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -37,13 +40,21 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# =========================
+# STATIC FILES
+# =========================
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
+# =========================
+# TEMPLATES
+# =========================
 templates = Jinja2Templates(directory="app/templates")
 
 
-# 👇 AHORA LA RAÍZ DEVUELVE HTML
-@app.get("/")
+# =========================
+# LOGIN PAGE
+# =========================
+@app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     return templates.TemplateResponse(
         "index.html",
@@ -51,18 +62,37 @@ async def home(request: Request):
     )
 
 
-# Endpoint health para Render
+# =========================
+# ADMIN PANEL PAGE
+# =========================
+@app.get("/admin", response_class=HTMLResponse)
+async def admin_panel(request: Request):
+    return templates.TemplateResponse(
+        "admin.html",
+        {"request": request}
+    )
+
+
+# =========================
+# HEALTH CHECK
+# =========================
 @app.get("/health")
 async def health():
     return {"status": "ok"}
 
 
+# =========================
+# ROUTERS API
+# =========================
 app.include_router(auth_router)
 app.include_router(users_router)
 app.include_router(orders_router)
 app.include_router(drivers_router)
 
 
+# =========================
+# GLOBAL ERROR HANDLER
+# =========================
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
     return JSONResponse(

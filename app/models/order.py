@@ -1,9 +1,8 @@
 from sqlalchemy import Column, Integer, String, Float, ForeignKey, DateTime
 from sqlalchemy.sql import func
-from app.database import Base
 from sqlalchemy.orm import relationship
+from app.database import Base
 
-driver = relationship("Driver", back_populates="orders")
 
 class Order(Base):
     __tablename__ = "orders"
@@ -20,8 +19,10 @@ class Order(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
-status_history = relationship(
-    "OrderStatusHistory",
-    back_populates="order",
-    cascade="all, delete-orphan"
-)
+    owner = relationship("User", back_populates="orders")
+    driver = relationship("Driver", back_populates="orders")
+    status_history = relationship(
+        "OrderStatusHistory",
+        back_populates="order",
+        cascade="all, delete-orphan"
+    )

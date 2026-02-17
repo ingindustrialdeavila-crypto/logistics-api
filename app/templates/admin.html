@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MLOGIX Admin</title>
+    <link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2 class="logo">MLOGIX</h2>
+        <ul>
+            <li onclick="loadDashboard()">Dashboard</li>
+            <li onclick="loadOrders()">Pedidos</li>
+            <li onclick="loadDrivers()">Mensajeros</li>
+            <li onclick="loadUsers()">Usuarios</li>
+        </ul>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+
+        <header class="topbar">
+            <h1>Dashboard</h1>
+            <button onclick="logout()">Cerrar sesión</button>
+        </header>
+
+        <!-- Metrics -->
+        <section class="metrics" id="metrics"></section>
+
+        <!-- Table -->
+        <section class="table-section">
+            <h2>Pedidos Recientes</h2>
+            <div id="table-container"></div>
+        </section>
+
+    </main>
+</div>
+
+<script src="/static/js/admin.js"></script>
+</body>
+</html>
