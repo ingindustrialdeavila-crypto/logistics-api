@@ -4,7 +4,6 @@ from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-# Database
 from app.database import engine, Base
 
 # Import models
@@ -25,12 +24,14 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI(
     title="MLOGIX API",
     version="1.0.0",
-    description="API empresarial para logística y mensajería"
+    description="API empresarial para logística y mensajería",
+    docs_url=None,          # Desactiva Swagger en raíz
+    redoc_url=None
 )
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Cambiar en producción
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -41,7 +42,7 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 templates = Jinja2Templates(directory="app/templates")
 
 
-# HOME HTML
+# 👇 AHORA LA RAÍZ DEVUELVE HTML
 @app.get("/")
 async def home(request: Request):
     return templates.TemplateResponse(
@@ -50,16 +51,12 @@ async def home(request: Request):
     )
 
 
-# HEALTH CHECK
-@app.get("/api/health")
+# Endpoint health para Render
+@app.get("/health")
 async def health():
-    return {
-        "status": "ok",
-        "message": "MLOGIX API running"
-    }
+    return {"status": "ok"}
 
 
-# Routers
 app.include_router(auth_router)
 app.include_router(users_router)
 app.include_router(orders_router)

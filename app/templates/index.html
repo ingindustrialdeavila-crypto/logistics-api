@@ -1,253 +1,126 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>MLOGIX API</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>MLOGIX | Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #0f172a, #1e3a8a);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-body{
-    font-family:'Inter',sans-serif;
-    background:#f5f7fb;
-}
+        .login-container {
+            background: white;
+            width: 380px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            text-align: center;
+        }
 
-/* ===== NAVBAR ===== */
-.navbar{
-    background: linear-gradient(90deg,#0f2027,#203a43,#2c5364);
-    padding:18px 60px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    color:white;
-}
+        .login-container h1 {
+            margin-bottom: 10px;
+            color: #1e3a8a;
+        }
 
-.logo-text{
-    font-size:22px;
-    font-weight:700;
-}
+        .login-container p {
+            margin-bottom: 30px;
+            color: #555;
+            font-size: 14px;
+        }
 
-.nav-links a{
-    color:#d1d5db;
-    text-decoration:none;
-    margin-left:30px;
-    font-weight:500;
-}
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
 
-.nav-links a:hover{
-    color:white;
-}
+        .form-group label {
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 5px;
+            display: block;
+        }
 
-.support-btn{
-    background:#22c55e;
-    padding:8px 16px;
-    border-radius:6px;
-    color:white !important;
-}
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: 0.3s;
+        }
 
-/* ===== HERO ===== */
-.hero{
-    background:white;
-    padding:90px 60px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    border-bottom:1px solid #e5e7eb;
-}
+        .form-group input:focus {
+            border-color: #1e3a8a;
+        }
 
-.hero-text{
-    max-width:550px;
-}
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: #1e3a8a;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
 
-.hero-text h1{
-    font-size:48px;
-    font-weight:700;
-    color:black;
-}
+        .btn-login:hover {
+            background: #172554;
+        }
 
-.hero-text p{
-    margin-top:20px;
-    font-size:18px;
-    color:#333;
-}
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #777;
+        }
 
-/* ===== LOGO ===== */
-.logo-box{
-    padding:30px 40px;
-}
+        .footer span {
+            color: #1e3a8a;
+            font-weight: bold;
+        }
 
-.logo-box img{
-    width:320px;
-}
-
-/* ===== BARRA AZUL ===== */
-.logo-bar{
-    height:6px;
-    background:#2563eb;
-}
-
-/* ===== SUBMENU ===== */
-.submenu{
-    background:white;
-    display:flex;
-    justify-content:center;
-    gap:50px;
-    padding:25px 0;
-    border-bottom:1px solid #e5e7eb;
-}
-
-.submenu a{
-    text-decoration:none;
-    color:black;
-    font-weight:600;
-    padding:8px 16px;
-    border-radius:6px;
-    transition:0.3s;
-}
-
-.submenu a:hover{
-    background:#2563eb;
-    color:white;
-}
-
-.submenu a.active{
-    background:#2563eb;
-    color:white;
-}
-
-/* ===== MAIN CONTENT ===== */
-.main-content{
-    padding:60px 100px;
-}
-
-/* ===== CARDS ===== */
-.card{
-    background:white;
-    padding:25px;
-    margin-bottom:25px;
-    border-radius:14px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.05);
-    transition:0.3s;
-}
-
-.card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 15px 35px rgba(0,0,0,0.08);
-}
-
-.method{
-    display:inline-block;
-    padding:6px 14px;
-    border-radius:20px;
-    color:white;
-    font-size:13px;
-    font-weight:600;
-    margin-right:15px;
-}
-
-.get{ background:#3b82f6; }
-.post{ background:#10b981; }
-
-.endpoint{
-    font-size:16px;
-    font-weight:600;
-}
-
-.description{
-    margin-top:8px;
-    color:#444;
-}
-
-/* ===== FOOTER ===== */
-footer{
-    text-align:center;
-    padding:40px;
-    color:#777;
-    font-size:14px;
-}
-</style>
+    </style>
 </head>
-
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-    <div class="logo-text">MLOGIX</div>
-    <div class="nav-links">
-        <a href="/" class="active">Dashboard</a>
-        <a href="/docs">API Docs</a>
-        <a href="/integration">Integration</a>
-        <a href="/logs">Logs</a>
-        <a href="#" class="support-btn">Support</a>
-    </div>
-</div>
+    <div class="login-container">
+        <h1>MLOGIX</h1>
+        <p>Plataforma empresarial de logística</p>
 
-<!-- HERO -->
-<div class="hero">
-    <div class="hero-text">
-        <h1>API de Mensajería y Logística</h1>
-        <p>
-            Plataforma empresarial para gestión de envíos,
-            rastreo en tiempo real y estimación inteligente de tarifas.
-        </p>
-    </div>
+        <form action="/auth/login" method="POST">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="correo@empresa.com" required>
+            </div>
 
-    <div class="logo-box">
-        <!-- IMPORTANTE: ruta correcta para FastAPI -->
-        <img src="/static/img/Mlogix_logo.png" alt="Mlogix Logo">
-    </div>
-</div>
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" name="password" placeholder="••••••••" required>
+            </div>
 
-<div class="logo-bar"></div>
+            <button class="btn-login" type="submit">
+                Iniciar Sesión
+            </button>
+        </form>
 
-<!-- SUBMENU -->
-<div class="submenu">
-    <a href="/" class="active">Shipping Endpoints</a>
-    <a href="/docs">API Docs</a>
-    <a href="/integration">Integration</a>
-    <a href="/logs">Logs</a>
-</div>
-
-<!-- CONTENIDO -->
-<div class="main-content">
-
-    <div class="card">
-        <span class="method get">GET</span>
-        <span class="endpoint">/ship/track/{trackingId}</span>
-        <div class="description">
-            Obtiene información detallada del seguimiento del envío.
+        <div class="footer">
+            © 2026 <span>MLOGIX</span> | Todos los derechos reservados
         </div>
     </div>
-
-    <div class="card">
-        <span class="method post">POST</span>
-        <span class="endpoint">/ship/create</span>
-        <div class="description">
-            Crea un nuevo envío dentro del sistema.
-        </div>
-    </div>
-
-    <div class="card">
-        <span class="method post">POST</span>
-        <span class="endpoint">/ship/estimate</span>
-        <div class="description">
-            Calcula tarifas estimadas según destino y peso.
-        </div>
-    </div>
-
-</div>
-
-<footer>
-©️ 2026 MLOGIX · Plataforma Empresarial de Logística desarrollada por el Grupo Empresarial Magnus Kamiuns GEMK
-</footer>
 
 </body>
 </html>
