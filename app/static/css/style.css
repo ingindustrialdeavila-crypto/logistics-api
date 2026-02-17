@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* CONTENEDOR PRINCIPAL */
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* BARRA LATERAL */
+.sidebar {
+    width: 240px;
+    background: #0a1f44;
+    color: white;
+    padding-top: 20px;
+}
+
+/* LOGO */
+.logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo img {
+    width: 120px;
+}
+
+/* MENÚ */
+.menu a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 15px 25px;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    background: #1c3d7a;
+}
+
+/* ÁREA PRINCIPAL */
+.main {
+    flex: 1;
+    background: #f4f7fc;
+    padding: 30px;
+}
+
+/* HEADER */
+.header {
+    background: white;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 6px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+/* TARJETAS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+    color: #0a1f44;
+    margin-bottom: 10px;
+}
